@@ -5,9 +5,10 @@ const pool = require('./db')
 
 // get all youdos
 app.get('/youdos', async (req, res) => {
-
-    const userEmail = 'trane@test.com'
-
+    console.log(req)
+    //test email for array
+    const userEmail = req.params
+    //this is testing for the data
     try {
        const youdos = await pool.query('SELECT * FROM youdos WHERE user_email = $1', [userEmail])
        res.json(youdos.rows)
