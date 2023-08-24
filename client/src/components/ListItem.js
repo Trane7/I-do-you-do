@@ -1,8 +1,22 @@
+import TickIcon from './TickIcon'
+import ProgressBar from './ProgressBar'
+
+
+
 const ListItem = (tasks) => {
     return (
-      <div className="list-item">
-        <p>{tasks.title}</p> 
-      </div>
+      <li className="list-item">
+        <div className="info-container">
+          <TickIcon/>
+          <p>{tasks.title}</p>
+          <ProgressBar/>
+        </div>
+
+        <div className="button-container">
+          <button className="edit">EDIT</button>
+          <button className="delete">DELETE</button>
+        </div>
+      </li>
     );
   }
   

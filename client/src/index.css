@@ -17,8 +17,8 @@ body {
     margin-top: 50px;
 }
 
-/* styling for the buttons in the conatiner at the top */
-.button-container {
+/* styling for the buttons in the div conatiners */
+.button-container, .info-container {
     display: flex;
     align-items: center;
 }
