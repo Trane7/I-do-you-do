@@ -22,8 +22,16 @@ const Modal = () => {
             value={""}
             onChange={handleChange}
             />
-            <input/>
-            <input type="submit"/>
+            <input
+              required
+              type="range"
+              min="0"
+              max="100"
+              name="progress"
+              value={""}
+              onChange={handleChange}
+            />
+            <input className={mode} type="submit"/>
           </form>
 
         </div> 
