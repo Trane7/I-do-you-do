@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const Modal = () => {
-  const mode = 'create'
+const Modal = ({ mode, setShowModal }) => {
   const editMode = mode === 'edit' ? true: false
 
   const [data, setData] = useState({
@@ -29,7 +28,7 @@ const Modal = () => {
       <div className="modal">
         <div className="form-title-container">
           <h3>Lets {mode} your task</h3>
-          <button>X</button>
+          <button onClick={() => setShowModal(false)}>X</button>
         </div>
 
         <form>
