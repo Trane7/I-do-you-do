@@ -1,50 +1,63 @@
-import { useState } from 'react'
-
-
+import { useState } from "react";
 
 const Modal = () => {
+  const mode = 'create'
+  const editMode = mode === 'edit' ? true: false
 
-    const mode = 'edit'
+  const [data, setData] = useState({
+    user_email: '',
+    title: "",
+    progress: "",
+    date: editMode ? "" : new Date()
+  })
 
-    const handleChange = () => {
-      console.log('changing!')
-    }
-    return (
-      <div className="overlay">
-        <div className="modal">
-          <div className="form-title-container">
-            <h3>Lets {mode} your task</h3>
-            <button>X</button>
-          </div>
 
-          <form>
-            <input
+  const handleChange = (e) => {
+    console.log("changing!", e);
+    // getting the name and value from the input targeting e.
+    const {name, value} = e.target
+
+    setData(data => ({
+      ...data,
+      [name] : value
+    }))
+
+    console.log(data)
+  };
+  return (
+    <div className="overlay">
+      <div className="modal">
+        <div className="form-title-container">
+          <h3>Lets {mode} your task</h3>
+          <button>X</button>
+        </div>
+
+        <form>
+          <input
             required
             maxLength={30}
             placeHolder=" Your task goes here"
             name="title"
-            value={""}
+            value={data.title}
             onChange={handleChange}
-            />
-            <br />
-            <label for="range">Drag to select your current progress</label>
-            <input
-              required
-              type="range"
-              id="range"
-              min="0"
-              max="100"
-              name="progress"
-              value={""}
-              onChange={handleChange}
-            />
-            <input className={mode} type="submit"/>
-          </form>
-
-        </div> 
+          />
+          <br />
+          <label for="range">Drag to select your current progress</label>
+          <input
+            required
+            type="range"
+            id="range"
+            min="0"
+            max="100"
+            name="progress"
+            value={data.progress}
+            onChange={handleChange}
+          />
+          <input className={mode} type="submit" />
+        </form>
       </div>
-    );
-  }
-  
-  export default Modal;
-  
+    </div>
+  );
+};
+
+export default Modal;
