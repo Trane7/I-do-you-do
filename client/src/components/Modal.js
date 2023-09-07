@@ -4,11 +4,20 @@ const Modal = ({ mode, setShowModal, tasks }) => {
   const editMode = mode === 'edit' ? true: false
 
   const [data, setData] = useState({
+    // this updates the data when trying to edit a task
     user_email: editMode ? tasks.user_email : null,
     title: editMode ? tasks.title : null,
     progress: progess ? tasks.progess : 50,
     date: editMode ? "" : new Date()
   })
+
+  const postData = () => {
+    try {
+      fetch()
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
 
   const handleChange = (e) => {
