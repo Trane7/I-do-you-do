@@ -31,6 +31,17 @@ const Modal = ({ mode, setShowModal, getData, tasks }) => {
   }
 
 
+  const editData = async(e) => {
+    e.preventDefault()
+    try {
+
+    }catch (err) {
+      console.log(err)
+    }
+  }
+
+
+
   const handleChange = (e) => {
     console.log("changing!", e);
     // getting the name and value from the input targeting e.
@@ -73,7 +84,7 @@ const Modal = ({ mode, setShowModal, getData, tasks }) => {
             onChange={handleChange}
           />
           {/* if in edit mode we can edit the data if not then post the data */}
-          <input className={mode} type="submit" onClick={editMode ? '': postData}/>
+          <input className={mode} type="submit" onClick={editMode ? editData : postData}/>
         </form>
       </div>
     </div>
