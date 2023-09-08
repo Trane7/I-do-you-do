@@ -32,8 +32,8 @@ const getData = async ()=> {
 
   return (
     <div className="app"> 
-      <ListHeader listName={'Holiday tick list'}/>
-      {sortedTasks?.map((tasks) => <ListItem key={tasks.id} task={task} />)}
+      <ListHeader listName={'Holiday tick list'} getData={getData}/>
+      {sortedTasks?.map((tasks) => <ListItem key={tasks.id} task={task} getData={getData} />)}
     </div>
   );
 }

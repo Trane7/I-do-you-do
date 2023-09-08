@@ -1,24 +1,30 @@
 import { useState } from "react";
 
-const Modal = ({ mode, setShowModal, tasks }) => {
+const Modal = ({ mode, setShowModal, getData, tasks }) => {
   const editMode = mode === 'edit' ? true: false
 
   const [data, setData] = useState({
     // this updates the data when trying to edit a task
-    user_email: editMode ? tasks.user_email : null,
+    user_email: editMode ? tasks.user_email : 'trane@test.com',
     title: editMode ? tasks.title : null,
     progress: progess ? tasks.progess : 50,
     date: editMode ? "" : new Date()
   })
 
-  const postData = async () => {
+  const postData = async (e) => {
+    // this keeps the page from refreshing on its own
+    e.preventDefault()
     try {
       const response = await fetch('http://localhost:8000/todos', {
         method: "POST",
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(data)
       })
-      console.log(response)
+      if (response.status === 200) {
+        console.log('YOU DID IT')
+        setShowModal(false)
+        getData()
+      }
     } catch(err) {
       console.log(err)
     }

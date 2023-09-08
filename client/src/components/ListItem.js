@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar'
 
 
 
-const ListItem = ({ tasks }) => {
+const ListItem = ({ tasks, getData }) => {
   const [showModal, setShowModal] = useState(false)
 
     return (
@@ -20,7 +20,7 @@ const ListItem = ({ tasks }) => {
           <button className="edit" onClick={() => setShowModal(true)}>EDIT</button>
           <button className="delete">DELETE</button>
         </div>
-        {showModal && <Modal mode={'edit'} setShowModal={setShowModal} tasks={tasks} />}
+        {showModal && <Modal mode={'edit'} setShowModal={setShowModal} getData= {getData} tasks={tasks} />}
       </li>
     );
   }
