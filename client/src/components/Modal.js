@@ -11,9 +11,14 @@ const Modal = ({ mode, setShowModal, tasks }) => {
     date: editMode ? "" : new Date()
   })
 
-  const postData = () => {
+  const postData = async () => {
     try {
-      fetch()
+      const response = await fetch('http://localhost:8000/todos', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      })
+      console.log(response)
     } catch(err) {
       console.log(err)
     }
@@ -61,7 +66,8 @@ const Modal = ({ mode, setShowModal, tasks }) => {
             value={data.progress}
             onChange={handleChange}
           />
-          <input className={mode} type="submit" />
+          {/* if in edit mode we can edit the data if not then post the data */}
+          <input className={mode} type="submit" onClick={editMode ? '': postData}/>
         </form>
       </div>
     </div>

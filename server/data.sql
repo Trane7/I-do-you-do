@@ -1,6 +1,6 @@
 CREATE DATABASE  idoyoudo;
 
-CREATE TABLE  youdo ( 
+CREATE TABLE  todo ( 
     id VARCHAR(255) PRIMARY KEY,
     user_email VARCHAR (255),
     title VARCHAR(30),

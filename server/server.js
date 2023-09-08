@@ -8,15 +8,15 @@ const pool = require('./db')
 
 app.use(cors())
 
-// get all youdos
-app.get('/youdos/:userEmail/', async (req, res) => {
+// get all todos
+app.get('/todos/:userEmail/', async (req, res) => {
     console.log(req)
     //test email for array
     const { userEmail } = req.params
     //this is testing for the data
     try {
-       const youdos = await pool.query('SELECT * FROM youdos WHERE user_email = $1', [userEmail])
-       res.json(youdos.rows)
+       const todos = await pool.query('SELECT * FROM todos WHERE user_email = $1', [userEmail])
+       res.json(todos.rows)
     } catch (err) {
         console.log(error)
     }
@@ -25,7 +25,11 @@ app.get('/youdos/:userEmail/', async (req, res) => {
 // creating a new todo
 app.post('/todos', (req, res) => {
     const {user_email, title, progress, date} = req.body
+    console.log(user_email, title, progress, date)
+
+    // this is being passed through the id in the try below
     const id = uuidv4()
+
     //this runs though all the 5 values
     try {
         pool.query('INSERT INTO todos(id, user_email, title, progress, date) VALUES($1, $2, $3, $4, $5',
