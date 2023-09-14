@@ -41,6 +41,20 @@ app.post('/todos', async(req, res) => {
     }
 })
 
+//edit a todo task
+app.put('/todos/:id', async (req, res) => {
+    const { id } = req.params
+    //desrtuctuing each variable 
+    const {user_email, title, progress, date} = req.body
+    try {
+        // setting each param 
+        const editTodo = await pool.query('UPDATE todos SET user_email = $1, title = $2, progress = $3, date = $4 WHERE id = $5;', [user_email, title, progress, date, id])
+        res.json(editTodo)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 
 
 app.listen(PORT, ( )=> console.log(`Server running on PORT ${PORT}`))
