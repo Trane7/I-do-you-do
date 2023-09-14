@@ -34,7 +34,7 @@ const Modal = ({ mode, setShowModal, getData, tasks }) => {
   const editData = async(e) => {
     e.preventDefault()
     try {
-
+        await fetch(`http:localhost:8000/todos/${task.id}`)
     }catch (err) {
       console.log(err)
     }
