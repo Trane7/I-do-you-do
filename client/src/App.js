@@ -11,7 +11,7 @@ const App = () => {
 const getData = async ()=> {
   try {
     //passing a param to find the user's email
-    const response = await fetch(`http://localhost:8000/todos/${userEmail}`)
+    const response = await fetch(`${process.env.REACT_APP_SERVERURL} /todos/${userEmail}`)
     const json = await response.json()
     console.log(json)
     setTasks(json)
