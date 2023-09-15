@@ -1,5 +1,6 @@
 import ListHeader from './components/ListHeader'
 import ListItem from './components/ListItem'
+import Auth from './components/Auth'
 import { useEffect, useState } from 'react'
 
 
@@ -7,6 +8,8 @@ import { useEffect, useState } from 'react'
 const App = () => {
   const userEmail = 'trane@test.com'
   const [ tasks, setTasks] = useState(null)
+
+  const authToken = false
 
 const getData = async ()=> {
   try {
@@ -32,8 +35,13 @@ const getData = async ()=> {
 
   return (
     <div className="app"> 
+    {/* if authToken exsits or not */}
+      {!authToken && <Auth/>}
+      {authToken && 
+      <>
       <ListHeader listName={'Holiday tick list'} getData={getData}/>
       {sortedTasks?.map((tasks) => <ListItem key={tasks.id} task={task} getData={getData} />)}
+      </>}
     </div>
   );
 }
