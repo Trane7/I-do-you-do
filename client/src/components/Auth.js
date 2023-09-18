@@ -3,11 +3,22 @@ import { useState } from 'react'
 const Auth = () => {
 
   const [isLogIn, setIsLogIn] = useState(true)
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [confirmPassword, setConfirmPassword] = useState(null)
   const [error, setError] = useState(null)
 
   const viewLogin = (status) => {
     setError(null)
     setIsLogIn(status)
+  }
+
+  const handleSubmit = () => {
+    email.preventDefault()
+    if (!isLogIn && password !== confirmPassword) {
+      setError( 'Make sure passwords are matching!')
+      return
+    }
   }
 
 
