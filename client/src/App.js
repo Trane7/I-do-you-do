@@ -23,7 +23,12 @@ const getData = async ()=> {
   }
  }
 
- useEffect(() => getData, [])
+ // if authToken exsits then get the data
+ useEffect(() => {
+  if (authToken) {
+    getData()
+  }
+ })
 
  // logs the tasks in the console
  console.log(tasks)
