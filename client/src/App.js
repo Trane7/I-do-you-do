@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react'
 
 
 const App = () => {
-  const userEmail = 'trane@test.com'
+  const [cookies, setCookie, removeCookie] = setCookie(null)
+  const authToken = cookies.AuthToken
+  const userEmail = cookies.email
   const [ tasks, setTasks] = useState(null)
 
-  const authToken = false
+
 
 const getData = async ()=> {
   try {
