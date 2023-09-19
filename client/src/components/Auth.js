@@ -8,6 +8,8 @@ const Auth = () => {
   const [confirmPassword, setConfirmPassword] = useState(null)
   const [error, setError] = useState(null)
 
+  console.log(email, password, confirmPassword)
+
   const viewLogin = (status) => {
     setError(null)
     setIsLogIn(status)
@@ -21,7 +23,20 @@ const Auth = () => {
       return
     }
 
-    await fetch(`${process.env.REACT_APP_SEVERURL}/${endpoint}`)
+    const response = await fetch(`${process.env.REACT_APP_SEVERURL}/${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json' },
+      body: JSON.stringify({email, password})
+    })
+
+    const data = await response.json()
+    
+    if (data.detail) {
+      setError(data.detail)
+    } else {
+      setCookie('Email', data.email)
+      setCookie('AuthToken', data.token)
+    }
   }
 
 
@@ -31,9 +46,21 @@ const Auth = () => {
           {/* the form for loggin in with the functionality */}
           <form>
             <h2>{isLogIn ? 'Please log in' : 'Please sign up'}</h2>
-            <input type="email" placeholder="email"/>
-            <input type="password" placeholder="password" />
-            {!isLogIn &&<input type="password" placeholder="confirm password"/>}
+            <input 
+              type="email" 
+              placeholder="email" 
+              onChange={(e) => setEmail(e.target.value)}
+              />
+            <input 
+              type="password" 
+              placeholder="password" 
+              onChange={(e) => setPassword(e.target.value)}
+              />
+            {!isLogIn &&<input 
+              type="password" 
+              placeholder="confirm password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              />}
             <input type="submit" className="create" onClick={(e) => handleSubmit(e, isLogIn ? 'login' : 'signup')}/>
             {error && <p>{error}</p>}
 
