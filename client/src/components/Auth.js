@@ -13,12 +13,15 @@ const Auth = () => {
     setIsLogIn(status)
   }
 
-  const handleSubmit = () => {
+  //checking if the user is signed in or not
+  const handleSubmit = async (e, endpoint) => {
     email.preventDefault()
     if (!isLogIn && password !== confirmPassword) {
       setError( 'Make sure passwords are matching!')
       return
     }
+
+    await fetch(`${process.env.REACT_APP_SEVERURL}/${endpoint}`)
   }
 
 
@@ -31,7 +34,7 @@ const Auth = () => {
             <input type="email" placeholder="email"/>
             <input type="password" placeholder="password" />
             {!isLogIn &&<input type="password" placeholder="confirm password"/>}
-            <input type="submit" className="create"/>
+            <input type="submit" className="create" onClick={(e) => handleSubmit(e, isLogIn ? 'login' : 'signup')}/>
             {error && <p>{error}</p>}
 
           </form>
