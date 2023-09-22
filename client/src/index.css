@@ -209,6 +209,7 @@ input {
     color: rgb(35, 38, 47);
 }
 
+/* copyright and user id */
 .copyright {
     font-size: 13px;
     margin: 10px;
@@ -222,3 +223,24 @@ input {
     margin: 10px;
     color: rgb(114, 114, 114);
 }
+
+/* progress bar styling */
+.outer-bar {
+    width: 200px;
+    height: 14px;
+    background-color: rgb(216, 216, 216);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.inner-bar {
+    height: 40px;
+}
+
+.task-title {
+    width: 300px;
+}
+
+
+
+
