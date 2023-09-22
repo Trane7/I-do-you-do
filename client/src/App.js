@@ -47,8 +47,10 @@ const getData = async ()=> {
       {authToken && 
       <>
       <ListHeader listName={'Holiday tick list'} getData={getData}/>
+      <p className="user-email">Welcome back {userEmail}</p>
       {sortedTasks?.map((tasks) => <ListItem key={tasks.id} task={task} getData={getData} />)}
       </>}
+      <p className="copyright">Creative Coding LLC</p>
     </div>
   );
 }
